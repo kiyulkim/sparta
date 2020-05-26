@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .dream_machine {
+            width: 300px;
+            height: 300px;
+            background-image: url(https://miro.medium.com/max/1000/1*HUuYwy-AY-cox9fkm-GNFg.jpeg);
+            background-size: cover;
+            border: 1px black;
+            border-radius: 2px;
+            margin: 10px auto;
+            background-position: center;
+
+        }
+
+        .productname {
+
+            font-size: 30px;
+        }
+
+        .col2 {
+            padding: 20px;
+            text-align: right;
+
+        }
+
+        .container {
+            padding: 20px;
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        .col-sm-2 {
+            width: 300px;
+
+        }
+
+        .exchange {
+            color: blue;
+        }
+    </style>
+
+    <script>
+        function q1() {
+            let name = $('#name_h1').val();
+            let address = $('#number_h1').val();
+            let number = $('#address_h1').val();
+            let quantity = $('#qtt_h1').val();
+
+            if (name == "" || address == "" || number == ""
+                || quantity == "") {
+                alert("빈칸을 입력해주세요");
+                return;
+            }
+
+        }
+
+
+        $.ajax({
+            type: "GET",
+            url: "https://api.manana.kr/exchange/rate.json",
+            data: {},
+            success: function (response) {
+                let current = response[1]['rate'];
+                let current_final = $('#display');
+                let ads = `달러 - 환율 ${current}`;
+                current_final.append(ads);
+
+            }
+        })
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="dream_machine">
+
+    </div>
+    <div class=all>
+        <div class="container">
+            <div class="row">
+                <p>
+                <div class="productname">
+                    <div class="col1">
+                        드림 머신
+                    </div>
+                </div>
+                <div class="col2">
+                    가격 : 58,000,000원 / 개
+                </div>
+            </div>
+            <div class="description">
+                이 상품은 영화 인셉션에서 사용하였던 드림머신으로 나의 꿈은 물론 다른사람의 꿈까지 접속이 가능하다. 최대 6명까지 동시접속이 가능한 멀티접속 기능과 배터리 충전시 최대 12시간까지
+                사용가능하다.
+                현실에서는
+                1시간이 꿈속에서는 약 3~4시간이니 너무 긴시간 사용하지 않아야한다.
+            </div>
+            <p id="display" class="exchange"></p>
+            </p>
+            <form>
+                <div class="productname">
+                    <div class="col1">
+                        지금 바로 주문하세요! <button onclick="q1()" type="button" class="btn btn-success">주문하기</button>
+                    </div>
+
+                </div>
+                <div class="col2">
+
+                </div>
+                <div class="form-group row">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함</span>
+                        </div>
+                        <input id="name_h1" type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+                        </div>
+                        <input id="number_h1" type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+                        </div>
+                        <input id="address_h1" type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">수량</span>
+                        </div>
+                        <select id="qtt_h1" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">추가구매</span>
+                        </div>
+                        <select id="inputState" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                            <option selected>안정제</option>
+                            <option>무중력포션</option>
+                            <option>수면영양제</option>
+                            <option>토템</option>
+                    </div>
+
+
+
+
+                </div>
+        </div>
+
+        </form>
+        <div class="buy">
+
+        </div>
+    </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
+
+
+<!-- 
+    1. 그림 넣을 때 가장 효율적인 방법
+    2. 부트스트랩에서 가져온 것의 클래스 사용방법
+    3. 드롭박스 정렬
+    4. 얼라인 맞추기
+    5. 주문자성함 칸 더 늘리기
+ -->

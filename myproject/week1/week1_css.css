@@ -1,0 +1,21 @@
+
+* {font-family: 'Pangolin', cursive;}
+body {
+    color: blue;
+}
+.mytitle {
+    border: 1px dashed;
+    border-radius: 2px;
+    background-color: sandybrown;
+    padding: 10px;
+    color: red;
+}
+.small-font {
+    width: 600px;
+    height: 600px;
+    margin: 10px auto;
+    background: url(https://icdn7.digitaltrends.com/image/guardians-of-the-galaxy-vol-2-2-720x720.jpg?ver=1.jpg);
+    background-position: center;
+    background-size: cover;
+
+}
