@@ -1,6 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
 
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db = client.dbsparta #새로운 데이터베이스 추가
+# dbsparta 라는 이름의 데이터베이스가 있으면 가져오고 없으면 추가 
+
+# mongoDB 추가하기
+# db.users.insert_one({'name':'bobby','age':21})
+# db.users.insert_one({'name':'kay','age':27})
+# db.users.insert_one({'name':'john','age':30})
+
+# mongDB 가져오기
+# users = list(db.users.find())
+users = list(db.users.find({'age' : 21}))
+
+for user in users:
+    print(user['name'])
+
+# 특정한 오브젝트 하나만 찾아보기
+user = db.users.find_one({'name':'bobby'},{'_id':False})
+
 #크롤링 하고 싶은 사이트 URL
 target_url = 'https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200303'
 
@@ -43,6 +63,13 @@ for movie in movies:
         text = a_tag.text # 태그의 값을 가져옴 <a><값></a>
         point = b_tag.text 
         print(int(rank), text, point)
+
+        document = {
+            'rank' : int(rank),
+            'title' : text,
+            'point' : point,
+        }
+        db.users.insert_one(document)
 
 # 숫자를 문자열로 str()
 # 문자열을 숫자로 int(), 숫자가 아닌 문자는 에러
