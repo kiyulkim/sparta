@@ -19,4 +19,7 @@ for music in musics :
         rank = music.select_one('td.number')
         title = a_tag.select_one('a.title ellipsis').text
         artist = a_tag.select_one('a.artist ellipsis').text
-        print(rank,title,artist)
+        rank_1 = rank.strip(" """)
+        title_1 = title.strip(" """)
+        artist_1 = artist.strip(" """)
+        print(rank_1,title_1,artist_1)
